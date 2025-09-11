@@ -15,6 +15,7 @@
         <module>football</module>
         <module>footballauth</module>
         <module>footballresource</module>
+        <module>footballui</module>
         <module>RestClient</module>
     </modules>
 
