@@ -14,4 +14,14 @@ public class SecurityConfig {
     return http.authorizeHttpRequests(authorize -> authorize.requestMatchers(HttpMethod.GET, "/football/teams/**").hasAuthority("SCOPE_football:read").requestMatchers(HttpMethod.POST, "/football/teams/**").hasAuthority("SCOPE_football:admin").anyRequest().authenticated())
         .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults())).build();
   }
+
+  @Bean
+  public SecurityFilterChain filterChainRoles(HttpSecurity http) throws Exception {
+    return http
+        .authorizeHttpRequests(
+            authorize -> authorize.requestMatchers(HttpMethod.POST, "football/teams/**").hasRole("ADMIN")
+                .anyRequest().authenticated())
+        .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+        .build();
+  }
 }
