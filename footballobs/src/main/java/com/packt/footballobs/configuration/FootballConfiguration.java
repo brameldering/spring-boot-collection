@@ -1,5 +1,7 @@
-package com.packt.footballobs;
+package com.packt.footballobs.configuration;
 
+import com.packt.footballobs.actuator.FootballCustomEndpoint;
+import com.packt.footballobs.service.FileLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

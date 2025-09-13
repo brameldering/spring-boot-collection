@@ -1,7 +1,8 @@
-package com.packt.footballobs;
+package com.packt.footballobs.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.packt.footballobs.configuration.FootballProperties;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -29,13 +30,6 @@ public class FileLoader {
     return teams;
   }
 
-  private void loadFile(String filename) throws Exception {
-      this.fileName = filename;
-      ObjectMapper objectMapper = new ObjectMapper();
-      File file = new File(fileName);
-      teams = objectMapper.readValue(file, new TypeReference<List<String>>() {});
-  }
-
   public void loadFile() throws IOException {
     Files.list(Paths.get(footballProperties.getFolder()))
         .filter(Files::isRegularFile)
@@ -49,4 +43,10 @@ public class FileLoader {
         });
   }
 
+  private void loadFile(String filename) throws Exception {
+    this.fileName = filename;
+    ObjectMapper objectMapper = new ObjectMapper();
+    File file = new File(fileName);
+    teams = objectMapper.readValue(file, new TypeReference<List<String>>() {});
+  }
 }

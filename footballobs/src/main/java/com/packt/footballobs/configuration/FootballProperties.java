@@ -1,4 +1,4 @@
-package com.packt.footballobs;
+package com.packt.footballobs.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
