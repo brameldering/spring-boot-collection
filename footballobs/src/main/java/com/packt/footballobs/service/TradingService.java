@@ -9,13 +9,13 @@ import java.util.Random;
 
 @Service
 public class TradingService {
-  private ApplicationEventPublisher applicationEventPublisher;
+  private final ApplicationEventPublisher applicationEventPublisher;
 
   public TradingService(ApplicationEventPublisher applicationEventPublisher) {
     this.applicationEventPublisher = applicationEventPublisher;
   }
 
-  public int getPendingOrders() {
+  private int getPendingOrders() {
     Random random = new Random();
     return random.nextInt(100);
   }

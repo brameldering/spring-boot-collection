@@ -14,3 +14,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/football
     username: packt
     password: packt
+    hikari:
+      connection-timeout: 5000
+      max-lifetime: 10000
+      validation-timeout: 2000
