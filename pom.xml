@@ -14,6 +14,7 @@
         <module>FeignClient</module>
         <module>football</module>
         <module>footballauth</module>
+        <module>footballclient</module>
         <module>footballobs</module>
         <module>footballresource</module>
         <module>footballui</module>
