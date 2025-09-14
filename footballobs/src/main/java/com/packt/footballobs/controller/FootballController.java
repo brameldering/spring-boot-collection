@@ -1,5 +1,6 @@
 package com.packt.footballobs.controller;
 
+import com.packt.footballobs.service.DataService;
 import com.packt.footballobs.service.FileLoader;
 import com.packt.footballobs.service.TradingService;
 import io.micrometer.observation.Observation;
@@ -17,14 +18,16 @@ public class FootballController {
   private final TradingService tradingService;
   private FileLoader fileLoader;
   private final ObservationRegistry observationRegistry;
+  private DataService dataService;
 
   private static final Logger logger = LoggerFactory.getLogger(FootballController.class);
   private static Random random = new Random();
 
-  public FootballController(FileLoader fileLoader, TradingService tradingService, ObservationRegistry observationRegistry) {
+  public FootballController(FileLoader fileLoader, TradingService tradingService, ObservationRegistry observationRegistry, DataService dataService) {
     this.fileLoader = fileLoader;
     this.tradingService = tradingService;
     this.observationRegistry = observationRegistry;
+    this.dataService = dataService;
   }
 
   @GetMapping
@@ -41,10 +44,10 @@ public class FootballController {
   public int getRanking(@PathVariable("player") String player) {
     logger.info("Preparing ranking for player {}", player);
 
-    if (random.nextInt(100) > 94) {
-      throw new RuntimeException("It's not possible to get the ranking for player " + player
-          + " at this moment. Please try again later.");
-    }
+//    if (random.nextInt(100) > 94) {
+//      throw new RuntimeException("It's not possible to get the ranking for player " + player
+//          + " at this moment. Please try again later.");
+//    }
 
     Observation collectObservation = Observation.createNotStarted("collect", observationRegistry);
     collectObservation.lowCardinalityKeyValue("player", player);
@@ -68,6 +71,11 @@ public class FootballController {
       }
     });
     return random.nextInt(1000);
+  }
+
+  @GetMapping("/stats/{player}")
+  public String getStats(@PathVariable("player") String player) {
+    return dataService.getPlayerStats(player);
   }
 
 }
