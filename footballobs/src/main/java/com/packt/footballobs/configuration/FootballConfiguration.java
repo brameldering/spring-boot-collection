@@ -2,6 +2,8 @@ package com.packt.footballobs.configuration;
 
 import com.packt.footballobs.actuator.FootballCustomEndpoint;
 import com.packt.footballobs.service.FileLoader;
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.observation.aop.ObservedAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +18,11 @@ public class FootballConfiguration {
   @Bean
   public FootballCustomEndpoint footballCustomEndpoint(FileLoader fileLoader) {
     return new FootballCustomEndpoint(fileLoader);
+  }
+
+  @Bean
+  public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
+    return new ObservedAspect(observationRegistry);
   }
 
 }

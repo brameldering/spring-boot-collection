@@ -3,12 +3,14 @@ package com.packt.footballobs.service;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
+import io.micrometer.observation.annotation.Observed;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Observed(name = "football.auction")
 @Service
 public class AuctionService {
   private Map<String, String> bids = new ConcurrentHashMap<>();
@@ -34,4 +36,15 @@ public class AuctionService {
       bids.remove(player);
     });
   }
+
+  public void addBidAOP(String player, String bid) {
+    bids.put(player, bid);
+    try {
+      Thread.sleep(random.nextInt(20));
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    bids.remove(player);
+  }
+
 }
