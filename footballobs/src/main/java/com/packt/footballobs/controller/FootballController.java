@@ -1,5 +1,6 @@
 package com.packt.footballobs.controller;
 
+import com.packt.footballobs.service.AuctionService;
 import com.packt.footballobs.service.DataService;
 import com.packt.footballobs.service.FileLoader;
 import com.packt.footballobs.service.TradingService;
@@ -19,15 +20,17 @@ public class FootballController {
   private FileLoader fileLoader;
   private final ObservationRegistry observationRegistry;
   private DataService dataService;
+  private AuctionService auctionService;
 
   private static final Logger logger = LoggerFactory.getLogger(FootballController.class);
   private static Random random = new Random();
 
-  public FootballController(FileLoader fileLoader, TradingService tradingService, ObservationRegistry observationRegistry, DataService dataService) {
+  public FootballController(FileLoader fileLoader, TradingService tradingService, ObservationRegistry observationRegistry, DataService dataService, AuctionService auctionService) {
     this.fileLoader = fileLoader;
     this.tradingService = tradingService;
     this.observationRegistry = observationRegistry;
     this.dataService = dataService;
+    this.auctionService = auctionService;
   }
 
   @GetMapping
@@ -77,5 +80,10 @@ public class FootballController {
   public String getStats(@PathVariable("player") String player) {
     return dataService.getPlayerStats(player);
   }
+
+  @PostMapping("/bid/{player}")
+    public void addBid(@PathVariable("player") String player, @RequestBody String bid) {
+      auctionService.addBid(player, bid);
+    }
 
 }
