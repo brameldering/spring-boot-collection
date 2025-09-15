@@ -6,7 +6,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,env,metrics,beans,loggers,football
+        include: health,env,metrics,beans,loggers,football,prometheus
+  prometheus:
+    metrics:
+      export:
+        enabled: true
   tracing:
     sampling:
       probability: 0.01
