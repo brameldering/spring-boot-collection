@@ -10,4 +10,8 @@ import java.util.List;
 public interface FootballClient {
   @RequestMapping(method = RequestMethod.GET, value = "/players")
   List<Player> getPlayers();
+
+  @RequestMapping(method = RequestMethod.GET, value="/serviceinfo")
+  String getServiceInfo();
 }
+
