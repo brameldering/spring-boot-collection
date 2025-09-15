@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(name = "football", url = "http://localhost:8080")
+@FeignClient("Football")
 public interface FootballClient {
   @RequestMapping(method = RequestMethod.GET, value = "/players")
   List<Player> getPlayers();

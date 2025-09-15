@@ -18,6 +18,7 @@
         <module>footballobs</module>
         <module>footballresource</module>
         <module>footballui</module>
+        <module>registry</module>
         <module>RestClient</module>
     </modules>
 
