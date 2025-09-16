@@ -11,6 +11,7 @@
     <description>A root POM for a multi-module project with Spring Boot examples.</description>
 
     <modules>
+        <module>Config</module>
         <module>FeignClient</module>
         <module>football</module>
         <module>footballauth</module>
