@@ -3,7 +3,7 @@ server:
 management:
   tracing:
     sampling:
-      probability: 1.0
+      probability: 0.1
 spring:
   application:
     name: football-client

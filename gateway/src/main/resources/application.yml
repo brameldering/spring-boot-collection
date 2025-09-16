@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: GatewayServer
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: players
+          uri: lb://football
+          predicates:
+            - Path=/api/players
+            - Path=/api/players/**
+          filters:
+            - StripPrefix=1
+        - id: albums
+          uri: lb://albums
+          predicates:
+            - Path=/api/albums
+            - Path=/api/albums/**
+          filters:
+            - StripPrefix=1
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+#    reactor.netty.http.server: DEBUG
+#    org.springframework.web.reactive.DispatcherHandler: DEBUG
+#    org.springframework.cloud.gateway.route.RouteDefinitionLocator: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

@@ -25,4 +25,9 @@ public class AlbumsController {
     return footballClient.getServiceInfo();
   }
 
+  @GetMapping
+  public List<String> getAlbums(){
+    return List.of("Album 1", "Album 2", "Album 3", "Album 4", "Album 5");
+  }
+
 }
