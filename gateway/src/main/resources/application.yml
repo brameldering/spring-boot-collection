@@ -5,6 +5,9 @@ spring:
     name: gateway
   profiles:
     active: default
+#  cloud:
+#    config:
+#      label: distributed-tracing
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
