@@ -5,9 +5,35 @@ spring:
     name: gateway
   profiles:
     active: default
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: teams
+              uri: lb://footballresource
+              predicates:
+                - Path=/football/**
+#              filters:
+#                - StripPrefix=1
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          audiences:
+            - football
+            - football-ui
+          issuer-uri: http://localhost:9000
 #  cloud:
 #    config:
 #      label: distributed-tracing
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        security: TRACE
+        web: INFO
+        cloud:
+          gateway: DEBUG

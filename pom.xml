@@ -15,6 +15,9 @@
         <module>albums</module>
         <module>football</module>
         <module>footballadmin</module>
+        <module>footballauth</module>
+        <module>footballresource</module>
+        <module>footballui</module>
         <module>gateway</module>
         <module>registry</module>
     </modules>
