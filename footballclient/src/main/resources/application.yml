@@ -1,9 +1,0 @@
-server:
-  port: 8090
-management:
-  tracing:
-    sampling:
-      probability: 0.1
-spring:
-  application:
-    name: football-client
